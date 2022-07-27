@@ -1,5 +1,6 @@
 {
   "expo": {
+    "owner":"vdias88",
     "name": "musicplayer",
     "slug": "musicplayer",
     "version": "1.0.0",
