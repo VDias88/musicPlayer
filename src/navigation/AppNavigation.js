@@ -14,7 +14,8 @@ function AppNavigator() {
           tabBarIconStyle: { display: 'none' },
           headerShown: false,
           tabBarStyle: {
-            alignItems: 'center', height: 56
+            alignItems: 'center',
+            height: 56,
           }
         }}
       >
@@ -24,7 +25,7 @@ function AppNavigator() {
           options={{
             tabBarShowLabel: false,
             tabBarButton: (props) => (
-              <CustomTabButton {...props} />
+              <CustomTabButton {...props} onPress={() => console.log('test')} />
             )
           }}
         />

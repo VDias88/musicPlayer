@@ -7,13 +7,19 @@ import { AntDesign } from '@expo/vector-icons'
 function CustomTabButton({ children, onPress }) {
   return (
     <Button
-      borderRadius={50}
       onPress={onPress}
       size={Button.sizes.small}
       style={{
-        width: 50, height: 50, top: -30, justifyContent: 'center', alignItems: 'center', alignSelf: 'center'
+        width: 50,
+        height: 50,
+        top: -30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        elevation: 10,
+        backgroundColor: '#1d3557'
       }}
-      iconSource={() => <AntDesign name="download" size={24} color="white" />}
+      iconSource={() => <AntDesign name="home" size={24} color="white" />}
     >
       {children}
     </Button>

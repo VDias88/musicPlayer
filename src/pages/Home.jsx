@@ -1,34 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet } from 'react-native'
 import {
+  Button,
+  LoaderScreen,
+  StackAggregator,
   Text,
-  Button
 } from 'react-native-ui-lib'
-import * as MediaLibrary from 'expo-media-library'
+import { Audio } from 'expo-av'
 import { observer } from 'mobx-react'
 import Container from '../components/Container'
 import MusicsStore from '../stores/musics/MusicsStore'
+import MusicRow from './components/MusicRow'
 
 const store = new MusicsStore()
 const Home = observer(({ navigation }) => {
-  // const [store] = useState(() => new MusicsStore())
-  // async function getMusics() {
-  //   const res = await MediaLibrary.requestPermissionsAsync()
-  //   if (res) {
-  //     const media = await MediaLibrary.getAssetsAsync({
-  //       mediaType: MediaLibrary.MediaType.audio,
-  //     })
-  //     console.log(media)
-  //   }
-  // }
-  console.log(store.value)
+  const [sound, setSound] = useState()
+  useEffect(() => {
+    store.getMusics()
+  }, [])
+  async function playMusic(music) {
+    const { sound } = await Audio.Sound.createAsync({ uri: music }, { shouldPlay: true })
+    setSound(sound)
+    await sound.playAsync()
+  }
+  function stopMusic() {
+    sound.unloadAsync()
+  }
   return (
     <Container>
-      <Button
-        label="Get"
-        onPress={() => store.increment()}
-      />
-      <Text>{store.value}</Text>
+      {store.isFetching && <LoaderScreen color="white" />}
+      <Button onPress={() => stopMusic()}><Text>Parar</Text></Button>
+      {store.musics?.map((e) => (
+        <MusicRow title={e.filename} time={e.duration} onPress={() => playMusic(e.uri)} />
+      ))}
     </Container>
   )
 })
