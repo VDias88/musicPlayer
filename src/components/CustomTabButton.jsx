@@ -4,7 +4,8 @@ import { StyleSheet } from 'react-native'
 import { Button } from 'react-native-ui-lib'
 import { AntDesign } from '@expo/vector-icons'
 
-function CustomTabButton({ children, onPress }) {
+function CustomTabButton({ state, children, onPress }, props) {
+  console.log(props)
   return (
     <Button
       onPress={onPress}
@@ -12,12 +13,10 @@ function CustomTabButton({ children, onPress }) {
       style={{
         width: 50,
         height: 50,
-        top: -30,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
-        elevation: 10,
-        backgroundColor: '#1d3557'
+        backgroundColor: null
       }}
       iconSource={() => <AntDesign name="home" size={24} color="white" />}
     >

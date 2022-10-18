@@ -22,7 +22,7 @@ class MusicsStore {
         mediaType: MediaLibrary.MediaType.audio,
       })
       this.setMusics(media.assets)
-      console.log(this.musics)
+      // console.log(this.musics)
       console.log('Deu bom')
     } else {
       this.modalData = {

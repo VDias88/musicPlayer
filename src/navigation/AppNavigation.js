@@ -1,6 +1,9 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
+import { BlurView } from 'expo-blur'
+import { StyleSheet } from 'react-native'
 import Home from '../pages/Home'
 import CustomTabButton from '../components/CustomTabButton'
 
@@ -15,8 +18,14 @@ function AppNavigator() {
           headerShown: false,
           tabBarStyle: {
             alignItems: 'center',
-            height: 56,
-          }
+            height: 70,
+            borderTopWidth: 0,
+            position: 'absolute',
+            elevation: 0
+          },
+          tabBarBackground: () => (
+            <BlurView tint="light" intensity={5} style={StyleSheet.absoluteFill} />
+          ),
         }}
       >
         <Tab.Screen

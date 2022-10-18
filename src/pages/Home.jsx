@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, FlatList } from 'react-native'
 import {
   Button,
   LoaderScreen,
-  StackAggregator,
+  ListItem,
   Text,
 } from 'react-native-ui-lib'
 import { Audio } from 'expo-av'
@@ -28,11 +28,11 @@ const Home = observer(({ navigation }) => {
   }
   return (
     <Container>
-      {store.isFetching && <LoaderScreen color="white" />}
+      {/* {store.isFetching && <LoaderScreen color="white" />}
       <Button onPress={() => stopMusic()}><Text>Parar</Text></Button>
-      {store.musics?.map((e) => (
-        <MusicRow title={e.filename} time={e.duration} onPress={() => playMusic(e.uri)} />
-      ))}
+      {store.musics?.map((e, i) => (
+        <MusicRow title={e.filename} time={e.duration} key={i} onPress={() => playMusic(e.uri)} />
+      ))} */}
     </Container>
   )
 })
