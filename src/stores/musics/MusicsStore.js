@@ -6,29 +6,30 @@ import * as MediaLibrary from 'expo-media-library'
 
 class MusicsStore {
   value = ''
+  currentMusic = {}
+  currentMusicStatus = {}
   musics = []
   modalData = {
     showModal: false,
     message: ''
   }
   isFetching = false
-
+  isPlayable = false
   async getMusics() {
     this.setIsFetching(true)
     const res = await MediaLibrary.requestPermissionsAsync()
-    this.setIsFetching(false)
     if (res) {
       const media = await MediaLibrary.getAssetsAsync({
         mediaType: MediaLibrary.MediaType.audio,
       })
       this.setMusics(media.assets)
-      // console.log(this.musics)
-      console.log('Deu bom')
+      this.setIsFetching(false)
     } else {
       this.modalData = {
         showModal: true,
         message: 'Ocorreu erro ao buscar suas músicas'
       }
+      this.setIsFetching(false)
     }
   }
 
@@ -43,6 +44,15 @@ class MusicsStore {
   }
   setIsFetching(value) {
     this.isFetching = value
+  }
+  setCurrentMusic(value) {
+    this.currentMusic = value
+  }
+  setCurrentMusicStatus(value) {
+    this.currentMusicStatus = value
+  }
+  setIsPlayable(value) {
+    this.isPlayable = value
   }
   setMusics(value) {
     this.musics = value

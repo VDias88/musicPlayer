@@ -5,7 +5,6 @@ import { Button } from 'react-native-ui-lib'
 import { AntDesign } from '@expo/vector-icons'
 
 function CustomTabButton({ state, children, onPress }, props) {
-  console.log(props)
   return (
     <Button
       onPress={onPress}
